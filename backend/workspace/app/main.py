@@ -5,6 +5,19 @@ import torch
 from app.services.llm import LlamaSummaryEngine
 from app.api.endpoints import router as api_router
 
+DIST_DIR = os.path.join(os.getcwd(), "frontend", "dist")
+
+if os.path.exists(DIST_DIR):
+    # Mount the /assets subfolder for React JS/CSS chunks
+    app.mount("/assets", StaticFiles(directory=os.path.join(DIST_DIR, "assets")), name="assets")
+
+    # Catch-all fallback route to serve index.html for UI views
+    @app.get("/{catchall:path}")
+    async def serve_frontend(catchall: str):
+        if catchall.startswith("api"):
+            return None
+        return FileResponse(os.path.join(DIST_DIR, "index.html"))
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup Lifecycle: Load model into cache memory once
