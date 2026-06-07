@@ -1,0 +1,13 @@
+# Node dependencies
+frontend/vite-project/node_modules/
+frontend/vite-project/dist/
+
+# Python environment & cache
+backend/workspace/app/__pycache__/
+backend/workspace/app/.pytest_cache/
+.env
+*.pyc
+
+# Operating system files
+.DS_Store
+Thumbs.db
