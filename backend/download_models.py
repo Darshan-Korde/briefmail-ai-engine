@@ -1,10 +1,9 @@
 # Script executed during Docker build time to bake weights into image layer
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModel
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from app.core.config import settings
 
-print("📥 Caching weights into container image layers...")
-tokenizer = AutoTokenizer.from_pretrained(settings.BASE_MODEL_ID)
-base_model = AutoModelForCausalLM.from_pretrained(settings.BASE_MODEL_ID)
-PeftModel.from_pretrained(base_model, settings.ADAPTER_MODEL_ID)
+print("📥 Caching pipeline weights into container image layers...")
+# Pre-download and store the T5 model configuration inside local environment paths
+tokenizer = AutoTokenizer.from_pretrained(settings.SUMMARY_MODEL_ID)
+model = AutoModelForSeq2SeqLM.from_pretrained(settings.SUMMARY_MODEL_ID)
 print("📦 Weights cached perfectly!")
