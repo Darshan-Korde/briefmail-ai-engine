@@ -15,6 +15,8 @@ BriefMail Engine is a lightweight, full-stack email summarization web applicatio
 * **Backend:** FastAPI (Python), Pydantic Settings, Uvicorn
 * **ML/AI:** Hugging Face Transformers, PyTorch
 * **AI Model Pipeline:** [wordcab/t5-small-email-summarizer](https://huggingface.co/wordcab/t5-small-email-summarizer)
+![Application](dashbrd_1.png)
+![Application](dshbrd_3.png)
 
 ## Quick Start
 
